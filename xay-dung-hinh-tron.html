@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	class hinhtron {
+		constructor (bankinh) {
+			this._bankinh = bankinh;
+		}
+
+		getBankinh(bankinh) {
+			this._bankinh = bankinh;
+		}
+
+		getDientich() {
+			return this._bankinh * this._bankinh * 3.14;
+		}
+
+	}
+
+	var Hinhtron = new hinhtron ("bán kính : " + 5);
+	alert(Hinhtron._bankinh);
+	Hinhtron.getBankinh(10);
+	alert(Hinhtron._bankinh);
+	alert(Hinhtron.getDientich());
+	// class Circle {
+	// 	constructor (radius) {
+	// 		this._radius = radius;
+	// 	}
+
+	// 	getRadius(radius) {
+	// 		this._radius = radius;
+	// 	}
+
+	// 	getArea() {
+	// 		return this._radius * this._radius * 3.14;
+	// 	}
+	// }
+
+	// var Circle1 = new Circle ("Bán kính:" + 5);
+	// alert(Circle1._radius);
+	// Circle1.getRadius(10);
+	// alert(Circle1._radius);
+	// alert(Circle1.getArea());
+
+</script> 
+</body>
+</html>

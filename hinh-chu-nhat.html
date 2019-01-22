@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Hình Chữ Nhật</title>
+</head>
+<body>
+  <canvas id="myCanvas" width="1000px"height="500px" style="border:1px solid #DF0101;">
+
+  <script>
+      class Circle {
+          constructor(chieudai, chieurong) {
+            this._chieudai = chieudai;
+            this._chieurong = chieurong;
+            this._color ="blue";
+            this._x =Math.floor(Math.random()*100);
+            this._y =Math.floor(Math.random()*100);
+          }
+
+          getchieudai(){
+            this._chieudai;
+          }
+          getchieurong(){
+            this._chieurong;
+          }
+
+          getChuvi(){
+            alert("Chu vi hình chữ nhật:" + (this._chieudai+this._chieurong)*2);
+          }
+
+          getDientich(){
+            alert("Diện tích hình chữ nhật:" + this._chieudai*this._chieurong);
+          }
+
+          getrandomcolor() {
+            let red = Math.floor(Math.random() * 255);
+            let green = Math.floor(Math.random() * 255);
+            let blue = Math.floor(Math.random() * 255);
+            this._color = "rgb(" + red + "," + green + "," + blue + ")";
+          }
+
+          createHCN() {
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.fillStyle=this._color;
+            ctx.fillRect(this._x,this._y,this._chieudai, this._chieurong);
+           }
+       }
+       var myhinhcn =new Circle(111,100);
+       myhinhcn.getChuvi();
+       myhinhcn.getDientich();
+       myhinhcn.getrandomcolor();
+       myhinhcn.getchieudai();
+       myhinhcn.getchieurong();
+       myhinhcn.createHCN();
+   
+  </script>
+
+</body>
+</html>

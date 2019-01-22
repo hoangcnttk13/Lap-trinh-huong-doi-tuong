@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 	<meta charset="UTF-8">
+    <title>Funny Circle</title>
+</head>
+<body>
+	<canvas id="myCanvas" width="1000px" height="700px" style="border: 2px solid #DF0101;">
+	<script type="text/javascript">
+
+        class Circle {
+        	constructor (x, y, radius) {
+   				this._x = x;
+   				this._y = y;
+   				this._radius = radius;
+   				this._color = "blue";
+			}
+
+			createCircle() {
+    			var ctx = document.getElementById("myCanvas").getContext("2d");
+    			ctx.beginPath();
+    			ctx.fillStyle = this._color;
+    			ctx.arc(this._x, this._y, this._radius, 0, 2 * Math.PI);
+    			ctx.fill ();
+        	}
+
+        	getbankinh(radius) {
+        		this._radius = radius;
+        	}
+
+        	getRandomcolor() {
+        		var red = Math.floor(Math.random()*255);
+        		var green = Math.floor(Math.random()*255);
+        		var blue = Math.floor(Math.random()*255);
+        		this._color = "rgb(" + red + "," + blue + "," + green +")";	
+        	}
+        }
+
+		var myCircle = new Circle(120,120,40);	
+		myCircle.getRandomcolor();
+		myCircle.getbankinh(Math.floor(Math.random()*80));
+		myCircle.createCircle();
+
+		var myCircle1 = new Circle(300,150,60);
+		// myCircle1.getRandomcolor();
+		myCircle1.getbankinh(Math.floor(Math.random()*80));
+		myCircle1.createCircle();
+
+		var listhinhtron = [];
+
+		for (var i = 1; i <=10; i++) {
+			listhinhtron[i] = new Circle(120,120,40);
+		}
+
+		for(var i = 1; i <= 10; i++){
+			listhinhtron[i].getRandomcolor();
+			listhinhtron[i].getbankinh(Math.floor(Math.random()*80));
+			listhinhtron[i].createCircle();
+    		listhinhtron[i].createCircle();
+    	}
+    	
+    	function draw() {
+          var myCircle = new Circle(120,120,40);	
+          myCircle.getbankinh();
+          myCircle.getRandomcolor();
+          myCircle.createCircle();
+
+          var myCircle1 = new Circle(300,150,60);
+          myCircle1.getbankinh();
+          myCircle1.getRandomcolor();
+          myCircle1.createCircle();
+
+      } setInterval(draw,50);
+
+
+    </script>
+</body>
+</html>
