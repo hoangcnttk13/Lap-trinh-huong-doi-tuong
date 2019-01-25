@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Điện thoại</title>
+</head>
+<body>
+<h2>Nokia</h2>
+<p id="trangthainokia"></p>
+<p>Pin:</p>
+<input type="submit" name="" id="dtNokia" value="BattatNOkia" onclick="BatTatNokia(this.value)"></br>
+<textarea rows="4" cols="50" id="soantin" ></textarea></br>
+<input type="submit" value="Gửi" id="dtnokiagui" onclick="guitin()">
+<input type="submit" value="Hộp thư đến" id="dtnokiaden" onclick="nokiaxemtn()">
+<input type="submit" value="Hộp thư đã gửi" id="dtnokiadagui" onclick="guitin()">
+<br>
+<hr>
+<h2>Iphone</h2>
+<p id="trangthaiiphone" ></p>
+<input type="submit" name="" id="dtIphone" value="BattatIPhone" onclick="BatTatIphone(this.value)"></br>
+<textarea rows="4" cols="50" id="soantin1" ></textarea></br>
+<input type="submit" value="Gửi" id="dtIphonegui" onclick="guitin1()">
+<input type="submit" value="Hộp thư đến" id="dtIphoneden" onclick="iphonexemtn()">
+<input type="submit" value="Hộp thư đã gửi" id="dtIphonedagui" onclick="guitin1()">
+
+<script type="text/javascript">
+	class Mobile {
+		constructor (loai, pin, trangthai) {
+			this._loai = loai;
+			this._pin = pin;
+			this._trangthai = trangthai;
+			this.tinnhan = [];
+			this.tinnhanden = [];
+			this.tinnhandagui = [];
+		}
+		battatDT() {
+			if (this._trangthai){
+				this._trangthai = false;
+			} 
+			else {
+				this._trangthai = true;
+			}
+		}
+		trangthaiDTNokia() {
+			if (this._trangthai){
+				document.getElementById("trangthainokia").innerHTML = "Đang bật";
+			} 
+			else{
+				document.getElementById("trangthainokia").innerHTML = "Đang tắt";
+			}
+		}
+		trangthaiDTIphone() {
+			if (this._trangthai){
+				document.getElementById("trangthaiiphone").innerHTML = "Đang bật";
+			} 
+			else{
+				document.getElementById("trangthaiiphone").innerHTML = "Đang tắt";
+			}
+		}
+		GuiTn(tin){
+			this.tinnhandagui.push(tin);
+		}
+		NhanTN(tin){
+			this.tinnhanden.push(tin);
+		}
+		GuiTn1(tin){
+			this.tinnhandagui.push(tin);
+		}
+		NhanTN1(tin){
+			this.tinnhanden.push(tin);
+		}
+		xacpin() {
+			if (this._pin < 99) {
+				this._pin = this._pin +1;
+			} else {
+				this._pin = 100;
+			} 
+
+		}
+	}
+
+	var Nokia = new Mobile("Nokia", 100, true);
+	var Iphone = new Mobile("Iphone", 100, true);
+	Nokia.trangthaiDTNokia();
+	Nokia.battatDT();
+	Iphone.trangthaiDTIphone();
+	Iphone.battatDT();
+	function BatTatNokia(value){
+		if(value === "BattatNOkia") {
+			(Nokia.battatDT());
+		}
+		Nokia.trangthaiDTNokia();		
+	}
+	function BatTatIphone(value){
+		if(value === "BattatIPhone") {
+			(Iphone.battatDT());
+		}
+		Iphone.trangthaiDTIphone();		
+	}
+	function guitin(){
+        let tinnhan = document.getElementById("soantin").value;
+        Nokia.GuiTn(tinnhan);
+        Iphone.NhanTN(tinnhan);
+        document.getElementById("dtIphoneden").value = "Hộp thư đến(" + Iphone.tinnhanden.length +")";
+        document.getElementById("dtnokiadagui").value = "Hộp thư đã gửi(" + Nokia.tinnhandagui.length +")";
+        document.getElementById("soantin").value = "";
+       }
+       function iphonexemtn(){
+           var result='';
+           for (let i=0; i< Iphone.tinnhanden.length;i++){
+               result = Iphone.tinnhanden[i] +"    ";
+           }
+           document.getElementById("soantin1").value = result; 
+       	}
+       	function guitin1(){
+        let tinnhan1 = document.getElementById("soantin1").value;
+        Iphone.GuiTn1(tinnhan1);
+        Nokia.NhanTN1(tinnhan1);
+        document.getElementById("dtnokiaden").value = "Hộp thư đến(" + Nokia.tinnhanden.length +")";
+        document.getElementById("dtIphonedagui").value = "Hộp thư đã gửi(" + Iphone.tinnhandagui.length +")";
+        document.getElementById("soantin1").value = "";
+       }
+       function nokiaxemtn(){
+           var result1='';
+           for (let i=0; i< Nokia.tinnhanden.length;i++){
+               result1 = Nokia.tinnhanden[i] +"    ";
+           }
+           document.getElementById("soantin").value = result1; 
+       	}
+</script>
+</body>
+</html>
