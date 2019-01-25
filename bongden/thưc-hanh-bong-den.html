@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Bóng đèn</title>
+</head>
+<body>
+	<p> <img src="bongdentat.png"  id="bongden"></p>
+	<input type="submit" id="idbattat" value="Bật-Tắt" onclick="battat()"><br>
+	<label>Pin:</label>
+	<label id="idpin"></label>
+
+<script type="text/javascript">
+	class Bongden {
+		constructor (_trangthai,_pin) {
+			this.pin = _pin;
+			this.trangthai = _trangthai;
+		}
+
+		BatTat() {
+			if (this.trangthai) {	
+				document.getElementById("bongden").src = "bongdentat.png"; 
+			}
+			else {
+				document.getElementById("bongden").src = "bongdenbat.png";
+			}
+		}
+	}
+
+	class Pin {
+		constructor (_luongpin) {
+			this.luongpin = _luongpin;
+		}
+		Luongpin() {
+            this.luongpin -= 1;
+            document.getElementById("idpin").innerHTML=this.luongpin + "%";
+           }
+	}
+	
+	var myPin = new Pin (10);
+	var myBongden = new Bongden(true,myPin);
+	function battat() {
+		if (myBongden.trangthai) {
+			myBongden.trangthai = false;
+			myBongden.BatTat();
+		} 
+		else {
+			if(myBongden.pin.luongpin > 0) {
+				myBongden.trangthai = true;
+				myBongden.BatTat();
+				myBongden.pin.Luongpin();
+			}
+			else {
+                alert("Đèn hết pin");
+            }
+		}
+	}
+</script>
+</body>
+</html>
