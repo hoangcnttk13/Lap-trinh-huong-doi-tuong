@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Title</title>
+</head>
+<body>
+<div id="game"></div>
+   <script>
+      class Hero {
+        constructor(_image, _top, _left, _size) {
+          this.image = _image;
+          this.top = _top;
+          this.left = _left;
+          this.size = _size;
+          this.speed = 20;
+        }
+        moveRight(){
+          this.left +=this.speed;
+        }
+        moveDown() {
+          this.top += this.speed;
+        }
+        moveLeft() {
+          this.left -= this.speed;
+        }
+        moveUp() {
+          this.top -= this.speed;
+        }
+
+        getHeroElement() {
+          return '<img width="'+ this.size + '"' +
+                   ' height="'+ this.size + '"' +
+                   ' src="' + this.image +'"' +
+                   ' style="top: '+this.top+'px; left:'+this.left+'px;position:absolute;" />';
+        }
+      }
+       var myHero = new Hero('pikachu.gif', 0, 0,200);
+       const screenWidth = window.innerWidth - myHero.size;
+       const  screeHeight = window.innerHeight - myHero.size;
+       console.log(screenWidth);
+       function start() {
+           document.getElementById('game').innerHTML = myHero.getHeroElement();
+           if(myHero.left <= screenWidth && myHero.top ===0) {
+               myHero.moveRight();
+                
+           }
+           if (myHero.top < screeHeight && myHero.left >= screenWidth) {
+               myHero.moveDown();
+           }
+           if (myHero.left > 0 && myHero.top >= screeHeight) {
+            myHero.moveLeft();
+           }
+           if (myHero.left == 0 && myHero.top > 0) {
+            myHero.moveUp();
+           }
+       }
+       setInterval(start, 100);
+       start();
+
+   </script>
+
+
+</body>
+</html>
